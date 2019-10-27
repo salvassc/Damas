@@ -1,36 +1,35 @@
-import controllers.MoveController;
-import controllers.ResumeController;
-import controllers.StartController;
-import models.Game;
+import controllers.Controller;
+import controllers.Logic;
 import views.View;
-import views.console.ConsoleView;
+import views.ConsoleView;
 
 class Ladies {
 
-    private Game game;
+    private Logic logic;
     private View view;
-    private StartController startController;
-    private MoveController moveController;
-    private ResumeController resumeController;
+    
 
     protected Ladies(){
-        this.game = new Game();
-        this.startController = new StartController(this.game);
-        this.moveController = new MoveController(this.game);
-        this.resumeController = new ResumeController(this.game);
-        this.view = this.createView(this.startController, this.moveController, this.resumeController);
+        this.logic = new Logic();
+        this.view = this.createView();
     }
 
     private void play() {
-        this.view.interact();
+        Controller controller;
+        do{
+            controller = this.logic.getController();
+            if(controller != null){
+                this.view.interact(controller);
+            }
+        }while(controller != null);
     }
 
-    private View createView(StartController startController, MoveController moveController, ResumeController resumeController){
-        return new ConsoleView(startController, moveController, resumeController);
+    private View createView(){
+        return new ConsoleView();
     }
 
     public static void main(String[] args) {
-        new Ladies().play();
+       new Ladies().play();
     }
 
     

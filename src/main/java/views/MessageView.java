@@ -1,14 +1,12 @@
 package views;
 
 public enum MessageView {
-	ATTEMPTS("#attempts attempt(s): "),
-	SECRET("*"),
+	NUMBERS("12345678"),
+	MOVE_BLACKS("Mueven negras:"),
+	MOVE_WHITES("Mueven blancas:"),
 	RESUME("Do you want to continue"),
-	RESULT(" --> #blacks blacks and #whites whites"),
-	PROPOSED_COMBINATION("Propose a combination: "),
-	TITLE("----- MASTERMIND -----"),
-	WINNER("You've won!!! ;-)"),
-	LOOSER("You've lost!!! :-(");
+	TITLE("----- THE LADIES -----"),
+	WINNER("You've won!!! ;-)");
 
 	private String message;
 	
