@@ -1,7 +1,5 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
-import javax.lang.model.util.ElementScanner6;
-
 public class Game {
 
 	private Board board;
@@ -26,9 +24,9 @@ public class Game {
 			final int row = coordinate.getRow();
 			Color color = null;
 			if (row <= 2) {
-				return new Piece(Color.BLACK);
+				color = Color.BLACK;
 			} else if (row >= 5) {
-				return new Piece(Color.WHITE);
+				color = Color.WHITE;
 			}
 			if (color != null) {
 				return new Piece(color);
