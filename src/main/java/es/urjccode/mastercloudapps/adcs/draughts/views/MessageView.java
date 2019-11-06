@@ -1,22 +1,30 @@
 package es.urjccode.mastercloudapps.adcs.draughts.views;
 
-public enum MessageView {
-	NUMBERS("12345678"),
-	MOVE_BLACKS("Mueven negras:"),
-	MOVE_WHITES("Mueven blancas:"),
-	RESUME("Do you want to continue"),
-	TITLE("Las Damas!!!"),
-	WINNER("You've won!!! ;-)");
+import es.urjccode.mastercloudapps.adcs.draughts.utils.Console;
 
-	private String message;
-	
-	private MessageView(String message) {
-		this.message = message;
-	}
-	
-	public String getMessage() {
-		return this.message;
-	}
+enum MessageView {
+
+    TITLE("Draughts"),
+    MESSAGE_RESUME("¿Queréis jugar otra?"),
+    MESSAGE_DERROTA("Derrota!!! No puedes mover tus fichas!!!");
+
+    private String message;
+    private static Console console = new Console();
+
+    private MessageView(String message){
+        this.message = message;
+    }
+
+    public void write(){
+        MessageView.console.write(this.message);
+    }
+
+    public void writeln(){
+        MessageView.console.writeln(this.message);
+    }
+
+    public String getMessage(){
+        return this.message;
+    }
 
 }
-

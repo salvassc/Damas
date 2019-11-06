@@ -1,12 +1,16 @@
 package es.urjccode.mastercloudapps.adcs.draughts.views;
 
 import es.urjccode.mastercloudapps.adcs.draughts.controllers.StartController;
-import es.urjccode.mastercloudapps.adcs.draughts.utils.Console;
-import es.urjccode.mastercloudapps.adcs.draughts.views.MessageView;
 
-class StartView extends Console{
+public class StartView extends SubView {
 
-    void interact(StartController startController){
-        new Console().writeln(MessageView.TITLE.getMessage());
+    public StartView(){
+        super();
+    }
+
+    public void interact(StartController startController) {
+        MessageView.TITLE.writeln();
+        new GameView().write(startController);
+        startController.start();
     }
 }

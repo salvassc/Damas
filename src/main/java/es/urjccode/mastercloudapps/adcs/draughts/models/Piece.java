@@ -4,16 +4,12 @@ public class Piece {
 
 	private Color color;
 
-	public Piece(Color color){
+	Piece(Color color){
 		this.color = color;
 	}
 
 	public Color getColor() {
 		return this.color;
-	}
-
-	public boolean isBlack() {
-		return this.color == Color.BLACK;
 	}
 
 	public boolean isAdvanced(Coordinate origin, Coordinate target) {
