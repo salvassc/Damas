@@ -8,7 +8,7 @@ public class StartView extends SubView {
         super();
     }
 
-    public void interact(StartController startController) {
+    void interact(StartController startController) {
         MessageView.TITLE.writeln();
         new GameView().write(startController);
         startController.start();

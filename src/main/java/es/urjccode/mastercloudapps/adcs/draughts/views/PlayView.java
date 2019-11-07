@@ -12,7 +12,7 @@ public class PlayView extends SubView {
         super();
     }
 
-    public void interact(PlayController playController) {
+    void interact(PlayController playController) {
         String color = PlayView.COLORS[playController.getColor().ordinal()];
         Error error = null;
         GameView gameView = new GameView();
