@@ -22,14 +22,11 @@ public class Game {
 	private Piece getInitialPiece(Coordinate coordinate) {
 		if (coordinate.isBlack()) {
 			final int row = coordinate.getRow();
-			Color color = null;
 			if (row <= 2) {
-				color = Color.BLACK;
-			} else if (row >= 5) {
-				color = Color.WHITE;
+				return new Piece(Color.BLACK);
 			}
-			if (color != null) {
-				return new Piece(color);
+			if (row >= 5) {
+				return new Piece(Color.WHITE);
 			}
 		}
 		return null;
