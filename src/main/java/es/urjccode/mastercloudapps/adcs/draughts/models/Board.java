@@ -48,12 +48,13 @@ class Board {
         return this.getSquare(coordinate).getColor();
     }
 
-    //Método erróneo (y falta prueba)
     List<Piece> getPieces(Color color) {
         List<Piece> pieces = new ArrayList<Piece>();
         for (int i = 0; i < this.getDimension(); i++) {
             for (int j = 0; j < this.getDimension(); j++) {
-                pieces.add(this.squares[i][j].getPiece());
+                if (color == this.getColor(new Coordinate(i,j))){
+                    pieces.add(this.squares[i][j].getPiece());
+                }
             }
         }
 		return pieces;
