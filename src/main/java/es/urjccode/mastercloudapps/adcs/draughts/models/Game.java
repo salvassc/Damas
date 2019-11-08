@@ -35,7 +35,7 @@ public class Game {
 	}
 
 	//Refactorizar este método
-	Error move(Coordinate origin, Coordinate target) {
+	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
 		if (!origin.isValid() || !target.isValid()) {
 			return Error.OUT_COORDINATE;
