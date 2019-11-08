@@ -76,11 +76,6 @@ public class Game {
 		return this.board.getColor(coordinate);
 	}
 
-	@Override
-	public String toString() {
-		return this.board + "\n" + this.turn;
-	}
-
 	public Color getColor() {
 		return this.turn.getColor();
 	}
