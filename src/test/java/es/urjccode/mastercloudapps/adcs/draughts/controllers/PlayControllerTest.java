@@ -37,6 +37,7 @@ public class PlayControllerTest {
     @Test()
     public void testGivenGameWhenMoveWithOuterCoordinateThenOutCoordinateError() {
         assertEquals(Error.OUT_COORDINATE, this.playController.move(new Coordinate(4, 7), new Coordinate(3, 8)));
+        assertEquals(Error.OUT_COORDINATE, this.playController.move(new Coordinate(8, 3), new Coordinate(4, 1)));
     }
 
     // public void data(){
