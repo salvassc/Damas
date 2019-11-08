@@ -9,28 +9,6 @@ public class Session {
 	public Session(){
 		this.state = new State();
 		this.game = new Game();
-	}
-
-	public Piece getPiece(Coordinate coordinate) {
-		return this.game.getPiece(coordinate);
-	}
-
-	public Color getColor() {
-		return this.game.getColor();
-	}
-
-	public Color getColor(Coordinate coordinate) {
-		return this.game.getColor(coordinate);
-	}
-
-	public boolean isBlocked() {
-		return this.game.isBlocked();
-	}
-
-	public int getDimension() {
-		return this.game.getDimension();
-	}
-
-	
+	}	
 
 }
