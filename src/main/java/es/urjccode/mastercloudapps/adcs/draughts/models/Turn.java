@@ -15,14 +15,5 @@ class Turn {
     Color getColor() {
 		return this.color;
     }
-    
-    @Override
-    public String toString(){
-        return this.color.name();
-    }
-
-	boolean isColor(Color color2) {
-		return false;
-	}
 
 }
