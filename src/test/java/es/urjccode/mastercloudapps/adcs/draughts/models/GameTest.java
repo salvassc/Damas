@@ -41,12 +41,6 @@ public class GameTest {
         }
     }
 
-    private void advance(Coordinate[][] coordinates){
-        for (int i = 0; i < coordinates.length; i++) {
-            game.move(coordinates[i][0], coordinates[i][1]);
-        }
-    }
-
     @Test
     public void testGivenGameWhenConstructThenInitialDistribution(){
         assertEquals(Color.WHITE, game.getColor(new Coordinate(5,0)));
