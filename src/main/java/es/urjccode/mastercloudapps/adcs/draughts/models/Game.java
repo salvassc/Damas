@@ -47,7 +47,7 @@ public class Game {
 	public boolean isBetweenDiagonalMove(Coordinate origin, Coordinate target){
 		if (origin.diagonalDistance(target) == 2) {
 			Coordinate between = origin.betweenDiagonal(target);
-			if (this.board.getPiece(between) == null) {
+			if (this.getPiece(between) == null) {
 				return false;
 			}
 			this.board.remove(between);
@@ -68,7 +68,7 @@ public class Game {
 	}
 
 	public boolean isBlocked() {
-		return getPieces(this.turn.getColor()).isEmpty();
+		return getPieces(this.getColor()).isEmpty();
 	}
 
 	public int getDimension() {
