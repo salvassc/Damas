@@ -32,7 +32,7 @@ public class PlayController extends Controller {
 		if (!game.isEmptyMove(target)) {
 			return Error.NOT_EMPTY_TARGET;
 		}
-		if (!game.isAdvancedMove(origin,target)) {
+		if (!game.getPiece(origin).isAdvanced(origin, target)) {
 			return Error.NOT_ADVANCED;
 		}
 		if (!game.isBetweenDiagonalMove(origin, target)){

@@ -44,14 +44,6 @@ public class Game {
 		return board.isEmpty(coordinate);
 	}
 
-	public boolean isAdvancedMove(Coordinate origin, Coordinate target){
-		Piece piece = this.board.getPiece(origin);
-		if (!piece.isAdvanced(origin, target)) {
-			return false;
-		}
-		return true;
-	}
-
 	public boolean isBetweenDiagonalMove(Coordinate origin, Coordinate target){
 		if (origin.diagonalDistance(target) == 2) {
 			Coordinate between = origin.betweenDiagonal(target);
