@@ -113,13 +113,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenMoveBadDistanceThenError() {
-        assertEquals(Error.BAD_DISTANCE, this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 0), new Coordinate(2, 3) },
-        })); 
-    }
-
-    @Test
     public void testGivenBoardWhenGetPiecesColorBlackThenPiecesColorBlack() {
         List<Piece> pieces = game.getPieces(Color.BLACK);
         for(int i = 0; i < game.getDimension(); i++){

@@ -41,9 +41,6 @@ public class Game {
 		if (!piece.isAdvanced(origin, target)) {
 			return Error.NOT_ADVANCED;
 		}
-		if (origin.diagonalDistance(target) >= 3) {
-			return Error.BAD_DISTANCE;
-		}
 		if (!this.board.isEmpty(target)) {
 			return Error.NOT_EMPTY_TARGET;
 		}

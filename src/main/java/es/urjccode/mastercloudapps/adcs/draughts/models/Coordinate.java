@@ -30,7 +30,7 @@ public class Coordinate {
                 || this.row - this.column == coordinate.row - coordinate.column;
     }
 
-    int diagonalDistance(Coordinate coordinate) {
+    public int diagonalDistance(Coordinate coordinate) {
         assert coordinate != null && coordinate.isValid();
         assert this.isValid() && this.isDiagonal(coordinate);
         return Math.abs(this.row - coordinate.row);

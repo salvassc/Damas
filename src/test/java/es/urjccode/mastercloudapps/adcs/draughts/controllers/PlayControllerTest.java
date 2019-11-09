@@ -73,6 +73,13 @@ public class PlayControllerTest {
         }));
     }
 
+    @Test
+    public void testGivenGameWhenMoveBadDistanceThenError() {
+        assertEquals(Error.BAD_DISTANCE, this.advance(new Coordinate[][] { 
+            { new Coordinate(5, 0), new Coordinate(2, 3) },
+        })); 
+    }
+
     // public void data(){
     //     Coordinate[][] coordinates = new Coordinate[][] {
     //         { new Coordinate(0,0), new Coordinate(0,0) },

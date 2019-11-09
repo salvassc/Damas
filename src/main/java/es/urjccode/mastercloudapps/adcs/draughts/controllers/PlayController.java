@@ -26,6 +26,9 @@ public class PlayController extends Controller {
 		if (!origin.isDiagonal(target)) {
 			return Error.NOT_DIAGONAL;
 		}
+		if (origin.diagonalDistance(target) >= 3) {
+			return Error.BAD_DISTANCE;
+		}
 		return null;
 	}
 
