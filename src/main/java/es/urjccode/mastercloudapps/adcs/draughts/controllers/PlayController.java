@@ -20,6 +20,9 @@ public class PlayController extends Controller {
 		if(game.isEmptyMove(origin)){
 			return Error.EMPTY_ORIGIN;
 		}
+		if(!game.getColorMove(origin)){
+			return Error.OPPOSITE_PIECE;
+		}
 		return null;
 	}
 

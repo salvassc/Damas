@@ -57,15 +57,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenMoveOppositePieceThenError() {
-        assertEquals(Error.OPPOSITE_PIECE, this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 6), new Coordinate(4, 7) },
-            { new Coordinate(2, 7), new Coordinate(3, 6) }, 
-            { new Coordinate(3, 6), new Coordinate(2, 7) }, 
-        }));
-    }
-
-    @Test
     public void testGivenGameWhenNotDiagonalMovementThenError() {
         assertEquals(Error.NOT_DIAGONAL, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 2), new Coordinate(4, 2) },

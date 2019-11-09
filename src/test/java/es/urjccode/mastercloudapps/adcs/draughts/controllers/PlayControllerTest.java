@@ -34,15 +34,36 @@ public class PlayControllerTest {
         assertEquals(pieceTarget.getColor(), Color.WHITE);
     }
 
+    private Error advance(Coordinate[][] coordinates){
+        Error error = null;
+        for (int i = 0; i < coordinates.length; i++) {
+            assertNull(error);
+            error = playController.checkMovements(coordinates[i][0], coordinates[i][1]);
+            if (error == null){
+                playController.move(coordinates[i][0], coordinates[i][1]);
+            }
+        }
+        return error;
+    }
+
     @Test()
     public void testGivenPlayControllerGameWhenMoveWithOuterCoordinateThenOutCoordinateError() {
-        assertEquals(Error.OUT_COORDINATE, this.playController.checkMovements(new Coordinate(4, 7), new Coordinate(3, 8)));
-        assertEquals(Error.OUT_COORDINATE, this.playController.checkMovements(new Coordinate(8, 3), new Coordinate(4, 1)));
+        assertEquals(Error.OUT_COORDINATE, this.advance(new Coordinate[][] {{new Coordinate(4, 7), new Coordinate(3, 8)},}));
+        assertEquals(Error.OUT_COORDINATE, this.advance(new Coordinate[][] {{new Coordinate(8, 3), new Coordinate(4, 1)},}));
     }
 
     @Test
     public void testGivenPlayControllerWhenMoveEmptySquaerThenEmptySquareError() {
-        assertEquals(Error.EMPTY_ORIGIN, this.playController.checkMovements(new Coordinate(4, 3), new Coordinate(3, 4)));
+        assertEquals(Error.EMPTY_ORIGIN, this.advance(new Coordinate[][] {{new Coordinate(4, 3), new Coordinate(3, 4)},}));
+    }
+
+    @Test
+    public void testGivenPlayControllerWhenMoveOppositePieceThenError() {
+        assertEquals(Error.OPPOSITE_PIECE, this.advance(new Coordinate[][] { 
+            { new Coordinate(5, 6), new Coordinate(4, 7) },
+            { new Coordinate(2, 7), new Coordinate(3, 6) }, 
+            { new Coordinate(3, 6), new Coordinate(2, 7) }, 
+        }));
     }
 
     // public void data(){

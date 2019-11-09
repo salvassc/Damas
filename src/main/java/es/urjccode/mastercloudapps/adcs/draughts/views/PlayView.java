@@ -17,9 +17,12 @@ public class PlayView extends WithConsoleView {
         do {
             String command = this.console.readString("Mueven las " + color + ": ");
             String[] numbers = command.split("\\.|\\n");
-            error = playController.move(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
+            error = playController.checkMovements(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
             if (error != null){
                 console.writeln("Error!!!" + error.name());
+            }
+            else{
+                playController.move(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
             }
             gameView.write(playController);
         } while (error != null); 

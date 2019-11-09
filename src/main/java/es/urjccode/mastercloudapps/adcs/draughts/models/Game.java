@@ -37,10 +37,6 @@ public class Game {
 	//Refactorizar este método
 	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
-		Color color = this.board.getColor(origin);
-		if (this.turn.getColor() != color) {
-			return Error.OPPOSITE_PIECE;
-		}
 		if (!origin.isDiagonal(target)) {
 			return Error.NOT_DIAGONAL;
 		}
@@ -75,6 +71,14 @@ public class Game {
 
 	public boolean isEmptyMove(Coordinate origin){
 		return board.isEmpty(origin);
+	}
+
+	public boolean getColorMove(Coordinate origin){
+		Color color = this.board.getColor(origin);
+		if (this.turn.getColor() != color) {
+			return false;
+		}
+		return true;
 	}
 
 	public Color getColor(Coordinate coordinate) {
