@@ -14,18 +14,18 @@ public class PlayView extends WithConsoleView {
         String color = MessageView.COLORS[playController.getColor().ordinal()];
         Error error = null;
         GameView gameView = new GameView();
+        String[] numbers;
         do {
             String command = this.console.readString("Mueven las " + color + ": ");
-            String[] numbers = command.split("\\.|\\n");
+            numbers = command.split("\\.|\\n");
             error = playController.checkMovements(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
             if (error != null){
                 console.writeln("Error!!!" + error.name());
             }
-            else{
-                playController.move(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
-            }
+        } while (error != null);
+            playController.move(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
             gameView.write(playController);
-        } while (error != null); 
+         
         if (playController.isBlocked()){
             this.console.write(MessageView.MESSAGE_END_GAME.getMessage());
         }

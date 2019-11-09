@@ -27,7 +27,7 @@ public class PlayControllerTest {
     public void givenPlayControllerWhenMovementRequiereCorrectThenNotError() {
         Coordinate origin = new Coordinate(5, 0);
         Coordinate target = new Coordinate(4, 1);
-        assertNull(playController.move(origin, target));
+        playController.move(origin, target);
         assertNull(playController.getPiece(origin));
         Piece pieceTarget = playController.getPiece(target);
         assertNotNull(pieceTarget);

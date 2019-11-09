@@ -41,13 +41,10 @@ public class GameTest {
         }
     }
 
-    private Error advance(Coordinate[][] coordinates){
-        Error error = null;
+    private void advance(Coordinate[][] coordinates){
         for (int i = 0; i < coordinates.length; i++) {
-            assertNull(error);
-            error = game.move(coordinates[i][0], coordinates[i][1]);
+            game.move(coordinates[i][0], coordinates[i][1]);
         }
-        return error;
     }
 
     @Test

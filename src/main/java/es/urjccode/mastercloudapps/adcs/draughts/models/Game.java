@@ -34,12 +34,10 @@ public class Game {
 		return null;
 	}
 
-	//Refactorizar este método
-	public Error move(Coordinate origin, Coordinate target) {
+	public void move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
 		this.board.move(origin, target);
 		this.turn.change();
-		return null;
 	}
 
 	public boolean isEmptyMove(Coordinate coordinate){

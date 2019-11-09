@@ -41,12 +41,11 @@ public class PlayController extends Controller {
 		return null;
 	}
 
-	public Error move(Coordinate origin, Coordinate target){
-		Error error = this.game.move(origin, target);
+	public void move(Coordinate origin, Coordinate target){
+		this.game.move(origin, target);
 		if (this.game.isBlocked()){
 			this.state.next();
 		}
-		return error;
     }
 
 	Piece getPiece(Coordinate coordinate) {
