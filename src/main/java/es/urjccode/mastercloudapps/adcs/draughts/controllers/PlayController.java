@@ -35,6 +35,9 @@ public class PlayController extends Controller {
 		if (!game.isAdvancedMove(origin,target)) {
 			return Error.NOT_ADVANCED;
 		}
+		if (!game.isBetweenDiagonalMove(origin, target)){
+			return Error.EATING_EMPTY;
+		}
 		return null;
 	}
 

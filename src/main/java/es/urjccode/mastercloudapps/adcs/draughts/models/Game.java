@@ -37,13 +37,6 @@ public class Game {
 	//Refactorizar este método
 	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
-		if (origin.diagonalDistance(target) == 2) {
-			Coordinate between = origin.betweenDiagonal(target);
-			if (this.board.getPiece(between) == null) {
-				return Error.EATING_EMPTY;
-			}
-			this.board.remove(between);
-		}
 		this.board.move(origin, target);
 		this.turn.change();
 		return null;
@@ -65,6 +58,17 @@ public class Game {
 		Piece piece = this.board.getPiece(origin);
 		if (!piece.isAdvanced(origin, target)) {
 			return false;
+		}
+		return true;
+	}
+
+	public boolean isBetweenDiagonalMove(Coordinate origin, Coordinate target){
+		if (origin.diagonalDistance(target) == 2) {
+			Coordinate between = origin.betweenDiagonal(target);
+			if (this.board.getPiece(between) == null) {
+				return false;
+			}
+			this.board.remove(between);
 		}
 		return true;
 	}

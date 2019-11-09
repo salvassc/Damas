@@ -71,26 +71,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenMovementThenEatPiece() {
-        assertNull(this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 0), new Coordinate(4, 1) },
-            { new Coordinate(2, 1), new Coordinate(3, 0) }, 
-            { new Coordinate(5, 2), new Coordinate(4, 3) },
-            { new Coordinate(3, 0), new Coordinate(5, 2) }, 
-        }));
-        assertNull(game.getColor(new Coordinate(3, 0)));
-        assertNull(game.getColor(new Coordinate(4, 1)));
-        assertEquals(Color.BLACK, game.getColor(new Coordinate(5, 2)));
-    }
-
-    @Test
-    public void testGivenGameWhenEatEmptyPieceThenError() {
-        assertEquals(Error.EATING_EMPTY, this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 4), new Coordinate(3, 2) },
-        })); 
-    }
-
-    @Test
     public void testGivenBoardWhenGetPiecesColorBlackThenPiecesColorBlack() {
         List<Piece> pieces = game.getPieces(Color.BLACK);
         for(int i = 0; i < game.getDimension(); i++){

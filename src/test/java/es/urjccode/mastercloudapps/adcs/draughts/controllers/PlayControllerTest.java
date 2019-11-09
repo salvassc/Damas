@@ -101,4 +101,24 @@ public class PlayControllerTest {
             { new Coordinate(3, 4), new Coordinate(4, 5) }, 
         }));        
     }
+
+    @Test
+    public void testGivenPlayControllerWhenEatEmptyPieceThenError() {
+        assertEquals(Error.EATING_EMPTY, this.advance(new Coordinate[][] { 
+            { new Coordinate(5, 4), new Coordinate(3, 2) },
+        })); 
+    }
+
+    @Test
+    public void testGivenPlayControllerWhenMovementThenEatPiece() {
+        assertNull(this.advance(new Coordinate[][] { 
+            { new Coordinate(5, 0), new Coordinate(4, 1) },
+            { new Coordinate(2, 1), new Coordinate(3, 0) }, 
+            { new Coordinate(5, 2), new Coordinate(4, 3) },
+            { new Coordinate(3, 0), new Coordinate(5, 2) }, 
+        }));
+        assertNull(playController.getColor(new Coordinate(3, 0)));
+        assertNull(playController.getColor(new Coordinate(4, 1)));
+        assertEquals(Color.BLACK, playController.getColor(new Coordinate(5, 2)));
+    }
 }
