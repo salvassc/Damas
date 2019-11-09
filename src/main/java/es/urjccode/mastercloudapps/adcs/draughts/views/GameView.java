@@ -6,8 +6,6 @@ import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
 
 public class GameView extends WithConsoleView {
 
-    private static final String[] COLORS = new String[]{"b", "n", " "};
-
 	void write(Controller controller) {
         final int DIMENSION = controller.getDimension();
         this.writeNumbersLine(DIMENSION);
@@ -16,9 +14,9 @@ public class GameView extends WithConsoleView {
             for(int j=0; j<DIMENSION; j++){
                 Color color = controller.getColor(new Coordinate(i,j));
                 if (color == null){
-                    this.console.write(GameView.COLORS[2]);
+                    this.console.write(MessageView.PIECE_COLORS[2]);
                 } else {
-                    this.console.write(GameView.COLORS[color.ordinal()]);
+                    this.console.write(MessageView.PIECE_COLORS[color.ordinal()]);
                 }
             }
             this.console.writeln((i+1)+"");

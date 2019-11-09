@@ -7,10 +7,12 @@ enum MessageView {
     TITLE("Draughts"),
     MESSAGE_RESUME("¿Queréis jugar otra?"),
     MESSAGE_END_GAME("Derrota!!! No puedes mover tus fichas!!!"),
-    MESSAGE_MOVE("Mueven las ##color:");
+    MESSAGE_MOVE("Mueven las #name_color:"),
+    PRINT_PIECE("#piece_color");
 
     private String message;
-    static final String[] COLORS = {"blancas", "negras"};
+    static final String[] NAME_COLORS = {"blancas", "negras"};
+    static final String[] PIECE_COLORS = new String[]{"b", "n", " "};
     private static Console console = new Console();
 
     private MessageView(String message){

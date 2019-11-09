@@ -11,7 +11,7 @@ public class PlayView extends WithConsoleView {
     }
 
     void interact(PlayController playController) {
-        String color = MessageView.COLORS[playController.getColor().ordinal()];
+        String color = MessageView.NAME_COLORS[playController.getColor().ordinal()];
         Error error = null;
         GameView gameView = new GameView();
         String[] numbers;
