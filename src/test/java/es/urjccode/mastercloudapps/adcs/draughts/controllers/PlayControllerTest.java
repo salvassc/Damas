@@ -80,6 +80,15 @@ public class PlayControllerTest {
         })); 
     }
 
+    @Test
+    public void testGivenGameWhenNotEmptyTargeThenError() {
+        assertEquals(Error.NOT_EMPTY_TARGET, this.advance(new Coordinate[][] { 
+            { new Coordinate(5, 6), new Coordinate(4, 7) },
+            { new Coordinate(2, 7), new Coordinate(3, 6) }, 
+            { new Coordinate(4, 7), new Coordinate(3, 6) }, 
+        })); 
+    }
+
     // public void data(){
     //     Coordinate[][] coordinates = new Coordinate[][] {
     //         { new Coordinate(0,0), new Coordinate(0,0) },

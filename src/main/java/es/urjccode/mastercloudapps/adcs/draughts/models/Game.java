@@ -41,9 +41,6 @@ public class Game {
 		if (!piece.isAdvanced(origin, target)) {
 			return Error.NOT_ADVANCED;
 		}
-		if (!this.board.isEmpty(target)) {
-			return Error.NOT_EMPTY_TARGET;
-		}
 		if (origin.diagonalDistance(target) == 2) {
 			Coordinate between = origin.betweenDiagonal(target);
 			if (this.board.getPiece(between) == null) {
@@ -56,15 +53,15 @@ public class Game {
 		return null;
 	}
 
-	public  boolean isValidMove(Coordinate origin, Coordinate target){
+	public boolean isValidMove(Coordinate origin, Coordinate target){
 		if(!origin.isValid() || !target.isValid()){
 			return false;
 		}
 		return true;
 	}
 
-	public boolean isEmptyMove(Coordinate origin){
-		return board.isEmpty(origin);
+	public boolean isEmptyMove(Coordinate coordinate){
+		return board.isEmpty(coordinate);
 	}
 
 	public boolean getColorMove(Coordinate origin){

@@ -70,15 +70,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenNotEmptyTargeThenError() {
-        assertEquals(Error.NOT_EMPTY_TARGET, this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 6), new Coordinate(4, 7) },
-            { new Coordinate(2, 7), new Coordinate(3, 6) }, 
-            { new Coordinate(4, 7), new Coordinate(3, 6) }, 
-        })); 
-    }
-
-    @Test
     public void testGivenGameWhenCorrectMovementThenOk() {
         Coordinate origin = new Coordinate(5, 0);
         Coordinate target = new Coordinate(4, 1);
