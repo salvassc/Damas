@@ -6,14 +6,12 @@ import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
 
 public class PlayView extends SubView {
 
-    private static final String[] COLORS = {"blancas", "negras"};
-
     public PlayView(){
         super();
     }
 
     void interact(PlayController playController) {
-        String color = PlayView.COLORS[playController.getColor().ordinal()];
+        String color = MessageView.COLORS[playController.getColor().ordinal()];
         Error error = null;
         GameView gameView = new GameView();
         do {
@@ -26,7 +24,7 @@ public class PlayView extends SubView {
             gameView.write(playController);
         } while (error != null); 
         if (playController.isBlocked()){
-            this.console.write(MessageView.MESSAGE_DERROTA.getMessage());
+            this.console.write(MessageView.MESSAGE_END_GAME.getMessage());
         }
     }
 
