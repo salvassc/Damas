@@ -53,13 +53,6 @@ public class Game {
 		return null;
 	}
 
-	public boolean isValidMove(Coordinate origin, Coordinate target){
-		if(!origin.isValid() || !target.isValid()){
-			return false;
-		}
-		return true;
-	}
-
 	public boolean isEmptyMove(Coordinate coordinate){
 		return board.isEmpty(coordinate);
 	}

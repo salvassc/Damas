@@ -14,7 +14,7 @@ public class PlayController extends Controller {
 	}
 
 	public Error checkMovements(Coordinate origin, Coordinate target){
-		if(!game.isValidMove(origin, target)){
+		if(!origin.isValid() || !target.isValid()){
 			return Error.OUT_COORDINATE;
 		}
 		if(game.isEmptyMove(origin)){
@@ -29,7 +29,7 @@ public class PlayController extends Controller {
 		if (origin.diagonalDistance(target) >= 3) {
 			return Error.BAD_DISTANCE;
 		}
-		if (game.isEmptyMove(target)) {
+		if (!game.isEmptyMove(target)) {
 			return Error.NOT_EMPTY_TARGET;
 		}
 		return null;
