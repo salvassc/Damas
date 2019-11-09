@@ -14,13 +14,13 @@ public class PlayController extends Controller {
 	}
 
 	public Error checkMovements(Coordinate origin, Coordinate target){
-		if(!origin.isValid() || !target.isValid()){
+		if (!origin.isValid() || !target.isValid()){
 			return Error.OUT_COORDINATE;
 		}
-		if(game.isEmptyMove(origin)){
+		if (game.isEmptyMove(origin)){
 			return Error.EMPTY_ORIGIN;
 		}
-		if(!game.getColorMove(origin)){
+		if (game.getColor(origin) != game.getColor()){
 			return Error.OPPOSITE_PIECE;
 		}
 		if (!origin.isDiagonal(target)) {

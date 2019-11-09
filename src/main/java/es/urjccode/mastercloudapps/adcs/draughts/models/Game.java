@@ -44,14 +44,6 @@ public class Game {
 		return board.isEmpty(coordinate);
 	}
 
-	public boolean getColorMove(Coordinate origin){
-		Color color = this.board.getColor(origin);
-		if (this.turn.getColor() != color) {
-			return false;
-		}
-		return true;
-	}
-
 	public boolean isAdvancedMove(Coordinate origin, Coordinate target){
 		Piece piece = this.board.getPiece(origin);
 		if (!piece.isAdvanced(origin, target)) {
