@@ -37,10 +37,6 @@ public class Game {
 	//Refactorizar este método
 	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
-		Piece piece = this.board.getPiece(origin);
-		if (!piece.isAdvanced(origin, target)) {
-			return Error.NOT_ADVANCED;
-		}
 		if (origin.diagonalDistance(target) == 2) {
 			Coordinate between = origin.betweenDiagonal(target);
 			if (this.board.getPiece(between) == null) {
@@ -60,6 +56,14 @@ public class Game {
 	public boolean getColorMove(Coordinate origin){
 		Color color = this.board.getColor(origin);
 		if (this.turn.getColor() != color) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean isAdvancedMove(Coordinate origin, Coordinate target){
+		Piece piece = this.board.getPiece(origin);
+		if (!piece.isAdvanced(origin, target)) {
 			return false;
 		}
 		return true;

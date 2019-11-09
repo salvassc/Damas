@@ -67,26 +67,38 @@ public class PlayControllerTest {
     }
 
     @Test
-    public void testGivenGameWhenNotDiagonalMovementThenError() {
+    public void testGivenPlayControllerGameWhenNotDiagonalMovementThenError() {
         assertEquals(Error.NOT_DIAGONAL, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 2), new Coordinate(4, 2) },
         }));
     }
 
     @Test
-    public void testGivenGameWhenMoveBadDistanceThenError() {
+    public void testGivenPlayControllerWhenMoveBadDistanceThenError() {
         assertEquals(Error.BAD_DISTANCE, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 0), new Coordinate(2, 3) },
         })); 
     }
 
     @Test
-    public void testGivenGameWhenNotEmptyTargeThenError() {
+    public void testGivenPlayControllerWhenNotEmptyTargeThenError() {
         assertEquals(Error.NOT_EMPTY_TARGET, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 6), new Coordinate(4, 7) },
             { new Coordinate(2, 7), new Coordinate(3, 6) }, 
             { new Coordinate(4, 7), new Coordinate(3, 6) }, 
         })); 
     }
-    
+
+    @Test
+    public void testGivenPlayControllerWhenMoveWithNotAdvancedThenError() {
+        assertEquals(Error.NOT_ADVANCED, this.advance(new Coordinate[][] { 
+            { new Coordinate(5, 6), new Coordinate(4, 7) },
+            { new Coordinate(2, 7), new Coordinate(3, 6) }, 
+            { new Coordinate(5, 4), new Coordinate(4, 3) },
+            { new Coordinate(1, 6), new Coordinate(2, 7) }, 
+            { new Coordinate(4, 3), new Coordinate(3, 4) },
+            { new Coordinate(0, 7), new Coordinate(1, 6) }, 
+            { new Coordinate(3, 4), new Coordinate(4, 5) }, 
+        }));        
+    }
 }

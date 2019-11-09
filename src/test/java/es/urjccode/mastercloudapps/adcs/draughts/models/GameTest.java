@@ -57,19 +57,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenMoveWithNotAdvancedThenError() {
-        assertEquals(Error.NOT_ADVANCED, this.advance(new Coordinate[][] { 
-            { new Coordinate(5, 6), new Coordinate(4, 7) },
-            { new Coordinate(2, 7), new Coordinate(3, 6) }, 
-            { new Coordinate(5, 4), new Coordinate(4, 3) },
-            { new Coordinate(1, 6), new Coordinate(2, 7) }, 
-            { new Coordinate(4, 3), new Coordinate(3, 4) },
-            { new Coordinate(0, 7), new Coordinate(1, 6) }, 
-            { new Coordinate(3, 4), new Coordinate(4, 5) }, 
-        }));        
-    }
-
-    @Test
     public void testGivenGameWhenCorrectMovementThenOk() {
         Coordinate origin = new Coordinate(5, 0);
         Coordinate target = new Coordinate(4, 1);

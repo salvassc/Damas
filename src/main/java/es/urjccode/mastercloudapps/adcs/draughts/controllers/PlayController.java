@@ -32,6 +32,9 @@ public class PlayController extends Controller {
 		if (!game.isEmptyMove(target)) {
 			return Error.NOT_EMPTY_TARGET;
 		}
+		if (!game.isAdvancedMove(origin,target)) {
+			return Error.NOT_ADVANCED;
+		}
 		return null;
 	}
 
