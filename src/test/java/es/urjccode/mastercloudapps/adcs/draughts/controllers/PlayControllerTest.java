@@ -35,9 +35,14 @@ public class PlayControllerTest {
     }
 
     @Test()
-    public void testGivenGameWhenMoveWithOuterCoordinateThenOutCoordinateError() {
-        assertEquals(Error.OUT_COORDINATE, this.playController.move(new Coordinate(4, 7), new Coordinate(3, 8)));
-        assertEquals(Error.OUT_COORDINATE, this.playController.move(new Coordinate(8, 3), new Coordinate(4, 1)));
+    public void testGivenPlayControllerGameWhenMoveWithOuterCoordinateThenOutCoordinateError() {
+        assertEquals(Error.OUT_COORDINATE, this.playController.checkMovements(new Coordinate(4, 7), new Coordinate(3, 8)));
+        assertEquals(Error.OUT_COORDINATE, this.playController.checkMovements(new Coordinate(8, 3), new Coordinate(4, 1)));
+    }
+
+    @Test
+    public void testGivenPlayControllerWhenMoveEmptySquaerThenEmptySquareError() {
+        assertEquals(Error.EMPTY_ORIGIN, this.playController.checkMovements(new Coordinate(4, 3), new Coordinate(3, 4)));
     }
 
     // public void data(){

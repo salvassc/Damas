@@ -37,9 +37,6 @@ public class Game {
 	//Refactorizar este método
 	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
-		if (board.isEmpty(origin)) {
-			return Error.EMPTY_ORIGIN;
-		}
 		Color color = this.board.getColor(origin);
 		if (this.turn.getColor() != color) {
 			return Error.OPPOSITE_PIECE;
@@ -67,6 +64,17 @@ public class Game {
 		this.board.move(origin, target);
 		this.turn.change();
 		return null;
+	}
+
+	public  boolean isValidMove(Coordinate origin, Coordinate target){
+		if(!origin.isValid() || !target.isValid()){
+			return false;
+		}
+		return true;
+	}
+
+	public boolean isEmptyMove(Coordinate origin){
+		return board.isEmpty(origin);
 	}
 
 	public Color getColor(Coordinate coordinate) {

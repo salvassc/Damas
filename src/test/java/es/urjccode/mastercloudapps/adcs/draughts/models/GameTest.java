@@ -57,13 +57,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGivenGameWhenMoveEmptySquaerThenEmptySquareError() {
-        assertEquals(Error.EMPTY_ORIGIN, this.advance(new Coordinate[][] { 
-            {  new Coordinate(4, 3), new Coordinate(3, 4), }, 
-        }));
-    }
-
-    @Test
     public void testGivenGameWhenMoveOppositePieceThenError() {
         assertEquals(Error.OPPOSITE_PIECE, this.advance(new Coordinate[][] { 
             { new Coordinate(5, 6), new Coordinate(4, 7) },

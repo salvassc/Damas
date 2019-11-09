@@ -13,10 +13,17 @@ public class PlayController extends Controller {
 		super(game,state);
 	}
 
-	public Error move(Coordinate origin, Coordinate target){
-		if(!origin.isValid() || !target.isValid()){
+	public Error checkMovements(Coordinate origin, Coordinate target){
+		if(!game.isValidMove(origin, target)){
 			return Error.OUT_COORDINATE;
 		}
+		if(game.isEmptyMove(origin)){
+			return Error.EMPTY_ORIGIN;
+		}
+		return null;
+	}
+
+	public Error move(Coordinate origin, Coordinate target){
 		Error error = this.game.move(origin, target);
 		if (this.game.isBlocked()){
 			this.state.next();
@@ -34,7 +41,7 @@ public class PlayController extends Controller {
 	
 	public boolean isBlocked() {
 		return game.isBlocked();
-	}	
+	}
 
 	@Override
 	public void accept(ControllersVisitor controllersVisitor) {
