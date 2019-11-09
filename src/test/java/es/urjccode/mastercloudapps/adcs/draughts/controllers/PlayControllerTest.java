@@ -66,6 +66,13 @@ public class PlayControllerTest {
         }));
     }
 
+    @Test
+    public void testGivenGameWhenNotDiagonalMovementThenError() {
+        assertEquals(Error.NOT_DIAGONAL, this.advance(new Coordinate[][] { 
+            { new Coordinate(5, 2), new Coordinate(4, 2) },
+        }));
+    }
+
     // public void data(){
     //     Coordinate[][] coordinates = new Coordinate[][] {
     //         { new Coordinate(0,0), new Coordinate(0,0) },

@@ -37,9 +37,6 @@ public class Game {
 	//Refactorizar este método
 	public Error move(Coordinate origin, Coordinate target) {
 		assert origin != null && target != null;
-		if (!origin.isDiagonal(target)) {
-			return Error.NOT_DIAGONAL;
-		}
 		Piece piece = this.board.getPiece(origin);
 		if (!piece.isAdvanced(origin, target)) {
 			return Error.NOT_ADVANCED;

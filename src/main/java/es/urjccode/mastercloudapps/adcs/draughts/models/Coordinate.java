@@ -23,7 +23,7 @@ public class Coordinate {
                 && column <= Coordinate.UPPER_LIMIT;
     }
 
-    boolean isDiagonal(Coordinate coordinate) {
+    public boolean isDiagonal(Coordinate coordinate) {
         assert coordinate != null && coordinate.isValid();
         assert this.isValid();
         return this.row + this.column == coordinate.row + coordinate.column

@@ -23,6 +23,9 @@ public class PlayController extends Controller {
 		if(!game.getColorMove(origin)){
 			return Error.OPPOSITE_PIECE;
 		}
+		if (!origin.isDiagonal(target)) {
+			return Error.NOT_DIAGONAL;
+		}
 		return null;
 	}
 
