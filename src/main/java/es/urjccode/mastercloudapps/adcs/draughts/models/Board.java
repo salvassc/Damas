@@ -3,6 +3,8 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.urjccode.mastercloudapps.adcs.draughts.views.MessageView;
+
 class Board {
 
     private static final int DIMENSION = 8;
@@ -91,8 +93,7 @@ class Board {
             if (piece == null) {
                 string += " ";
             } else {
-                final String[] letters = {"b","n"};
-                string += letters[piece.getColor().ordinal()];
+                string += MessageView.PIECE_COLORS[piece.getColor().ordinal()];
             }
         }
         return string + row + "\n";
