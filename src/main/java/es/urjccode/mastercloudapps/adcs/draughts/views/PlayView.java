@@ -20,7 +20,7 @@ public class PlayView extends WithConsoleView {
             numbers = command.split("\\.|\\n");
             error = playController.checkMovements(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
             if (error != null){
-                console.writeln("Error!!!" + error.name());
+                console.writeln(MessageView.ERROR.getMessage() + error.name());
             }
         } while (error != null);
             playController.move(new Coordinate(numbers[0]), new Coordinate(numbers[1]));

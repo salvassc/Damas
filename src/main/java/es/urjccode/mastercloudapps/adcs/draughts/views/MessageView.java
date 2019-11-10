@@ -7,7 +7,8 @@ public enum MessageView {
     TITLE("Draughts"),
     MESSAGE_RESUME("¿Queréis jugar otra?"),
     MESSAGE_END_GAME("Derrota!!! No puedes mover tus fichas!!!"),
-    MESSAGE_MOVE("Mueven las #name_color:");
+    MESSAGE_MOVE("Mueven las #name_color:"),
+    ERROR("Error!!!");
 
     private String message;
     static final String[] NAME_COLORS = {"blancas", "negras"};
