@@ -9,6 +9,11 @@ public class GameView extends WithConsoleView {
 	void write(Controller controller) {
         final int DIMENSION = controller.getDimension();
         this.writeNumbersLine(DIMENSION);
+        this.writeBoard(controller,DIMENSION);
+        this.writeNumbersLine(DIMENSION);
+    }
+
+    private void writeBoard(Controller controller, int DIMENSION){
         for(int i=0; i<DIMENSION; i++){
             this.console.write((i+1)+"");
             for(int j=0; j<DIMENSION; j++){
@@ -16,7 +21,6 @@ public class GameView extends WithConsoleView {
             }
             this.console.writeln((i+1)+"");
         }
-        this.writeNumbersLine(DIMENSION);
     }
     
     private void writeSquare(Controller controller, Coordinate coordinate){
