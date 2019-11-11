@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import es.urjccode.mastercloudapps.adcs.draughts.views.MessageView;
+
 public class Console {
 	
 	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
@@ -18,7 +20,7 @@ public class Console {
 				input = bufferedReader.readLine();
 				ok = true;
 			} catch (IOException ex) {
-				this.writeError("de cadena de caracteres");
+				this.writeError(MessageView.CONSOLE_ERROR_STRING.getMessage());
 			}
 		} while (!ok);
 		return input;
@@ -32,7 +34,7 @@ public class Console {
 				input = Integer.parseInt(this.readString(title));
 				ok = true;
 			} catch (NumberFormatException ex) {
-				this.writeError("entero");
+				this.writeError(MessageView.CONSOLE_ERROR_INT.getMessage());
 			}
 		} while (!ok);
 		return input;
@@ -44,7 +46,7 @@ public class Console {
 		do {
 			String input = this.readString(title);
 			if (input.length() != 1) {
-				this.writeError("caracter");
+				this.writeError(MessageView.CONSOLE_ERROR_CHARACTER.getMessage());
 			} else {
 				charValue = input.charAt(0);
 				ok = true;
@@ -66,7 +68,6 @@ public class Console {
 	}
 
 	private void writeError(String formato) {
-		System.out.println("ERROR DE FORMATO! "
-				+ "Introduzca un valor con formato " + formato + ".");
+		System.out.println(MessageView.CONSOLE_ERROR_FORMAT.getMessage() + formato + ".");
 	}
 }
