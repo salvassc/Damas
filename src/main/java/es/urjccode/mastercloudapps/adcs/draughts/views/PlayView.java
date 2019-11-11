@@ -11,13 +11,11 @@ public class PlayView extends WithConsoleView {
     }
 
     void interact(PlayController playController) {
-        String color = MessageView.NAME_COLORS[playController.getColor().ordinal()];
         Error error = null;
         GameView gameView = new GameView();
-        String[] numbers;
+        String[] numbers = null;
         do {
-            String command = this.console.readString("Mueven las " + color + ": ");
-            numbers = command.split("\\.|\\n");
+            numbers = readUserMovement(playController);
             error = playController.checkMovements(new Coordinate(numbers[0]), new Coordinate(numbers[1]));
             if (error != null){
                 console.writeln(MessageView.ERROR.getMessage() + error.name());
@@ -29,6 +27,13 @@ public class PlayView extends WithConsoleView {
         if (playController.isBlocked()){
             this.console.write(MessageView.MESSAGE_END_GAME.getMessage());
         }
+    }
+
+    private String[] readUserMovement(PlayController playController){
+        String color = MessageView.NAME_COLORS[playController.getColor().ordinal()];
+        String command = this.console.readString("Mueven las " + color + ": ");
+        return command.split("\\.|\\n");
+        
     }
 
 }
