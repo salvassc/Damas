@@ -9,6 +9,10 @@ class Board {
     private Square[][] squares;
 
     Board() {
+        initSquares();
+    }
+
+    private void initSquares(){
         this.squares = new Square[this.getDimension()][this.getDimension()];
         for (int i = 0; i < this.getDimension(); i++) {
             for (int j = 0; j < this.getDimension(); j++) {
