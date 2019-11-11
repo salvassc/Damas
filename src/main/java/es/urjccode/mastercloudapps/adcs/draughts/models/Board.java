@@ -58,7 +58,7 @@ class Board {
             for (int j = 0; j < this.getDimension(); j++) {
                 Coordinate coordinate = new Coordinate(i,j);
                 if (color == this.getColor(coordinate)){
-                    pieces.add(this.getSquare(coordinate).getPiece());
+                    pieces.add(this.getPiece(coordinate));
                 }
             }
         }
