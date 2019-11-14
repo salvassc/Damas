@@ -66,7 +66,7 @@ public class Game {
 		return this.board.getColor(coordinate);
 	}
 
-	public Color getColor() {
+	public Color getTurnColor() {
 		return this.turn.getColor();
 	}
 
