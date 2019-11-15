@@ -20,7 +20,7 @@ class PlayView extends SubView {
         GameView gameView = new GameView();
         do {
             error = null;
-            String color = MessageView.PIECE_COLORS[playController.getColor().ordinal()];
+            String color = MessageView.NAME_COLORS[playController.getColor().ordinal()];
             String format = this.console.readString("Mueven las " + color + ": ");
             if (format.length() != PlayView.FORMAT.length()) {
                 error = Error.BAD_FORMAT;
