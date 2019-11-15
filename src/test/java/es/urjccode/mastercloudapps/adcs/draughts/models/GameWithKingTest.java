@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class GameWithDraughtsTest {
+public class GameWithKingTest {
 
     @Mock
     Turn turn;
@@ -31,53 +31,77 @@ public class GameWithDraughtsTest {
     }
 
     @Test
-    public void testGivenGameWhenWhitePawnAtLimitThenNewDraugts(){
+    public void testGivenGameWhenWhiteMenAtLimitThenNewKing(){
         Coordinate origin = new Coordinate(1,0);
         Coordinate target = new Coordinate(0,1);
         
-        when (turn.getColor()).thenReturn(Color.WHITE);
+        when(turn.getColor()).thenReturn(Color.WHITE);
         when(board.isEmpty(origin)).thenReturn(false);
         when(board.getColor(origin)).thenReturn(Color.WHITE);
         when(board.getPiece(origin)).thenReturn(piece);
         when(piece.isCorrect(origin, target, board)).thenReturn(null);
         when(board.remove(origin)).thenReturn(new Piece(Color.WHITE));
-        
         when(board.getPiece(target)).thenReturn(new Piece(Color.WHITE));
+
         game.move(origin, target);
         verify(board).remove(target);
-        verify(board).put(any(Coordinate.class), any(Draught.class));
+        verify(board).put(any(Coordinate.class), any(King.class));
     }
 
     @Test
-    public void testGivenGameWhenPawnAtLimitAndEatingThenNewDraugts(){
+    public void testGivenGameWhenWhiteMenAtLimitAndEatingThenNewKing(){
         Coordinate origin = new Coordinate(2,1);
         Coordinate target = new Coordinate(0,3);
-        when (turn.getColor()).thenReturn(Color.WHITE);
+
+        when(turn.getColor()).thenReturn(Color.WHITE);
         when(board.isEmpty(origin)).thenReturn(false);
         when(board.getColor(origin)).thenReturn(Color.WHITE);
         when(board.getPiece(origin)).thenReturn(piece);
         when(piece.isCorrect(origin, target, board)).thenReturn(null);
         when(board.remove(origin)).thenReturn(new Piece(Color.WHITE));
         when(board.getPiece(target)).thenReturn(new Piece(Color.WHITE));
+
         game.move(origin, target);
         verify(board).remove(origin.betweenDiagonal(target));
         verify(board).remove(target);
-        verify(board).put(any(Coordinate.class), any(Draught.class));
+        verify(board).put(any(Coordinate.class), any(King.class));
     }
 
     @Test
-    public void testGivenGameWhenBlackPawnAtLimitThenNewDraugts(){
+    public void testGivenGameWhenBlackMenAtLimitThenNewKing(){
         Coordinate origin = new Coordinate(6,3);
         Coordinate target = new Coordinate(7,2);
-        when (turn.getColor()).thenReturn(Color.BLACK);
+
+        when(turn.getColor()).thenReturn(Color.BLACK);
         when(board.isEmpty(origin)).thenReturn(false);
         when(board.getColor(origin)).thenReturn(Color.BLACK);
         when(board.getPiece(origin)).thenReturn(piece);
         when(piece.isCorrect(origin, target, board)).thenReturn(null);
         when(board.remove(origin)).thenReturn(new Piece(Color.BLACK));
         when(board.getPiece(target)).thenReturn(new Piece(Color.BLACK));
+
         game.move(origin, target);
         verify(board).remove(target);
-        verify(board).put(any(Coordinate.class), any(Draught.class));
+        verify(board).put(any(Coordinate.class), any(King.class));
     }
+
+    @Test
+    public void testGivenGameWhenBlackMenAtLimitAndEatingThenNewKing(){
+        Coordinate origin = new Coordinate(5,0);
+        Coordinate target = new Coordinate(7,2);
+
+        when(turn.getColor()).thenReturn(Color.BLACK);
+        when(board.isEmpty(origin)).thenReturn(false);
+        when(board.getColor(origin)).thenReturn(Color.BLACK);
+        when(board.getPiece(origin)).thenReturn(piece);
+        when(piece.isCorrect(origin, target, board)).thenReturn(null);
+        when(board.remove(origin)).thenReturn(new Piece(Color.BLACK));
+        when(board.getPiece(target)).thenReturn(new Piece(Color.BLACK));
+
+        game.move(origin, target);
+        verify(board).remove(origin.betweenDiagonal(target));
+        verify(board).remove(target);
+        verify(board).put(any(Coordinate.class), any(King.class));
+    }
+
 }

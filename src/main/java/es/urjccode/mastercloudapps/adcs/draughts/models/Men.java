@@ -1,8 +1,8 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
-class Draught extends Piece {
+class Men extends Piece {
 
-    Draught(Color color) {
+    Men(Color color) {
         super(color);
     }
 
