@@ -6,8 +6,6 @@ import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
 
 class PlayView extends SubView {
 
-    private static final String[] COLORS = { "blancas", "negras" };
-    private static final String MESSAGE = "Derrota!!! No puedes mover tus fichas!!!";
     private static final String FORMAT = "xx.xx";
 
     PlayView() {
@@ -19,26 +17,29 @@ class PlayView extends SubView {
         Coordinate origin = null;
         Coordinate target = null;
         Error error;
+        GameView gameView = new GameView();
         do {
             error = null;
-            String color = PlayView.COLORS[playController.getColor().ordinal()];
+            String color = MessageView.PIECE_COLORS[playController.getColor().ordinal()];
             String format = this.console.readString("Mueven las " + color + ": ");
             if (format.length() != PlayView.FORMAT.length()) {
-                this.console.write("Error!!! Formato incorrecto");
                 error = Error.BAD_FORMAT;
+                this.console.writeln(MessageView.ERROR.getMessage() + error.name());
             } else {
                 origin = Coordinate.getInstance(format.substring(0, 2));
                 target = Coordinate.getInstance(format.substring(3, 5));
                 if (origin == null || target == null) {
                     error = Error.BAD_FORMAT;
+                    this.console.writeln(MessageView.ERROR.getMessage() + error.name());
                 } 
             }
         } while (error != null);
         error = playController.isCorrect(origin, target);
         if (error == null){
             playController.move(origin, target);
+            gameView.write(playController);
             if (playController.isBlocked()){
-                this.console.writeln(PlayView.MESSAGE);
+                this.console.writeln(MessageView.MESSAGE_END_GAME.getMessage());
             }
         }
     }
