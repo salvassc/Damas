@@ -3,7 +3,7 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 public class Game {
 
 	private Board board;
-	private Turn turn;
+	Turn turn;
 
 	public Game() {
 		this.turn = new Turn();
@@ -43,13 +43,18 @@ public class Game {
 
 	public void move(Coordinate origin, Coordinate target) {
 		assert this.isCorrect(origin, target) == null;
+		Color colorPiece = this.getColor(origin);
 		if (origin.diagonalDistance(target) == 2) {
 			this.board.remove(origin.betweenDiagonal(target));
 		}
 		this.board.move(origin, target);
 		if (this.board.getPiece(target).isLimit(target)){
 			this.board.remove(target);
-			this.board.put(target, new King(Color.WHITE));
+			if(colorPiece == Color.WHITE){
+				this.board.put(target, new King(Color.WHITE));
+			}else {
+				this.board.put(target, new King(Color.BLACK));
+			}
 		}
 		this.turn.change();
 	}

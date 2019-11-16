@@ -14,9 +14,6 @@ import org.mockito.MockitoAnnotations;
 public class GameWithKingTest {
 
     @Mock
-    Turn turn;
-
-    @Mock
     Piece piece;
     
     @Mock
@@ -35,7 +32,6 @@ public class GameWithKingTest {
         Coordinate origin = new Coordinate(1,0);
         Coordinate target = new Coordinate(0,1);
         
-        when(turn.getColor()).thenReturn(Color.WHITE);
         when(board.isEmpty(origin)).thenReturn(false);
         when(board.getColor(origin)).thenReturn(Color.WHITE);
         when(board.getPiece(origin)).thenReturn(piece);
@@ -53,7 +49,6 @@ public class GameWithKingTest {
         Coordinate origin = new Coordinate(2,1);
         Coordinate target = new Coordinate(0,3);
 
-        when(turn.getColor()).thenReturn(Color.WHITE);
         when(board.isEmpty(origin)).thenReturn(false);
         when(board.getColor(origin)).thenReturn(Color.WHITE);
         when(board.getPiece(origin)).thenReturn(piece);
@@ -72,7 +67,6 @@ public class GameWithKingTest {
         Coordinate origin = new Coordinate(6,3);
         Coordinate target = new Coordinate(7,2);
 
-        when(turn.getColor()).thenReturn(Color.BLACK);
         when(board.isEmpty(origin)).thenReturn(false);
         when(board.getColor(origin)).thenReturn(Color.BLACK);
         when(board.getPiece(origin)).thenReturn(piece);
@@ -80,6 +74,7 @@ public class GameWithKingTest {
         when(board.remove(origin)).thenReturn(new Piece(Color.BLACK));
         when(board.getPiece(target)).thenReturn(new Piece(Color.BLACK));
 
+        game.turn.change();
         game.move(origin, target);
         verify(board).remove(target);
         verify(board).put(any(Coordinate.class), any(King.class));
@@ -90,7 +85,6 @@ public class GameWithKingTest {
         Coordinate origin = new Coordinate(5,0);
         Coordinate target = new Coordinate(7,2);
 
-        when(turn.getColor()).thenReturn(Color.BLACK);
         when(board.isEmpty(origin)).thenReturn(false);
         when(board.getColor(origin)).thenReturn(Color.BLACK);
         when(board.getPiece(origin)).thenReturn(piece);
@@ -98,6 +92,7 @@ public class GameWithKingTest {
         when(board.remove(origin)).thenReturn(new Piece(Color.BLACK));
         when(board.getPiece(target)).thenReturn(new Piece(Color.BLACK));
 
+        game.turn.change();
         game.move(origin, target);
         verify(board).remove(origin.betweenDiagonal(target));
         verify(board).remove(target);

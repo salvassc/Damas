@@ -80,6 +80,7 @@ public class GameWithKingTestBuilder {
         assertEquals(Color.BLACK, game.getPiece(origin).getColor());
         assertNull(game.getPiece(target));
 
+        game.turn.change();
         game.move(origin, target);
 
         assertNull(game.getPiece(origin));
@@ -107,6 +108,7 @@ public class GameWithKingTestBuilder {
         assertEquals(Color.WHITE, game.getPiece(eat).getColor());
         assertNull(game.getPiece(target));
 
+        game.turn.change();
         game.move(origin, target);
 
         assertNull(game.getPiece(origin));
