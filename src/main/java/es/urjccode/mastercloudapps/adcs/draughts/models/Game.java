@@ -49,11 +49,9 @@ public class Game {
 		}
 		this.board.move(origin, target);
 		if (this.board.getPiece(target).isLimit(target)){
-			this.board.remove(target);
-			if(colorPiece == Color.WHITE){
-				this.board.put(target, new King(Color.WHITE));
-			}else {
-				this.board.put(target, new King(Color.BLACK));
+			if(board.getNumberkings(colorPiece) < King.MAX_KINGS){
+				this.board.remove(target);
+				this.board.put(target, new King(colorPiece));
 			}
 		}
 		this.turn.change();

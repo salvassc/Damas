@@ -65,6 +65,21 @@ class Board implements PieceProvider {
     
     int getDimension() {
 		return Board.DIMENSION;
+    }
+    
+    int getNumberkings(Color color){
+        int numberKings = 0;
+		for(int i = 0; i < this.getDimension(); i++){
+            for(int j = 0; j < this.getDimension(); j++){
+                Piece piece = this.getPiece(new Coordinate(i,j));
+                if(piece != null){
+                    if(piece.getClass() == King.class && piece.getColor() == color) {
+                        numberKings++;
+                    }
+                }
+            }
+        }
+        return numberKings;
 	}
 
     @Override

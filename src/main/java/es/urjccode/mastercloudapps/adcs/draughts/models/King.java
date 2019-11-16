@@ -2,14 +2,10 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 class King extends Piece {
 
-    private static final int MAX_KINGS = 2;
+    static final int MAX_KINGS = 2;
 
     King(Color color) {
         super(color);
-    }
-
-    int getMaxKings(){
-        return King.MAX_KINGS;
     }
 
 }
