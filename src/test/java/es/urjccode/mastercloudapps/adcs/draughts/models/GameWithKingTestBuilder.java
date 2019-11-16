@@ -116,4 +116,59 @@ public class GameWithKingTestBuilder {
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
     }
 
+    @Test
+    public void testGivenGameWhenWhiteMenAtLimitThenNotNewKingByMaxKings(){
+        Coordinate origin = new Coordinate(1,0);
+        Coordinate target = new Coordinate(0,1);
+
+        Game game = new GameBuilder()
+            .row("     B  ")
+            .row("b       ")
+            .row("       B")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+        assertEquals(Color.WHITE, game.getPiece(origin).getColor());
+        assertNull(game.getPiece(target));
+
+        game.move(origin, target);
+
+        assertNull(game.getPiece(origin));
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
+        assertEquals(Men.class, game.getTypePiece(target));
+    }
+
+    @Test
+    public void testGivenGameWhenBlackMenAtLimitAndEatingThenNotNewKingByMaxKings(){
+        Coordinate origin = new Coordinate(5,0);
+        Coordinate eat = new Coordinate(6,1);
+        Coordinate target = new Coordinate(7,2);
+
+        Game game = new GameBuilder()
+        .row("        ")
+        .row("        ")
+        .row("        ")
+        .row("        ")
+        .row("        ")
+        .row("n       ")
+        .row(" b      ")
+        .row("        ")
+        .build();
+
+        assertEquals(Color.BLACK, game.getPiece(origin).getColor());
+        assertEquals(Color.WHITE, game.getPiece(eat).getColor());
+        assertNull(game.getPiece(target));
+
+        game.turn.change();
+        game.move(origin, target);
+
+        assertNull(game.getPiece(origin));
+        assertNull(game.getPiece(eat));
+        assertEquals(Color.BLACK, game.getPiece(target).getColor());
+        assertEquals(Men.class, game.getTypePiece(target));
+    }
+
 }
