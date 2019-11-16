@@ -1,7 +1,9 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -172,6 +174,43 @@ public class GameWithKingTestBuilder {
         assertNull(game.getPiece(eat));
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
         assertEquals(Men.class, game.getPiece(target).getClass());
+    }
+
+    @Test
+    public void testGivenGameWhenNoBlackWhitePiecesThenGameBlocked(){
+        Game game = new GameBuilder()
+            .row("     N  ")
+            .row("        ")
+            .row(" n     N")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+
+        assertTrue(game.isBlocked());
+    }
+
+    @Test
+    public void testGivenGameWhenEatAndNoBlackPiecesThenGameBlocked(){
+        Coordinate origin = new Coordinate(3,2);
+        Coordinate target = new Coordinate(1,0);
+
+        Game game = new GameBuilder()
+            .row("     B  ")
+            .row("        ")
+            .row(" n     B")
+            .row("  b     ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+
+        assertFalse(game.isBlocked());
+        game.move(origin, target);
+        assertTrue(game.isBlocked());
     }
 
 }
