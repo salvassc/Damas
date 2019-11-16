@@ -222,10 +222,11 @@ public class GameWithKingTestBuilder {
             .row("        ")
             .row("        ")
             .row("        ")
-            .row(" b      ")
-            .row("n n     ")
+            .row(" n      ")
+            .row("b b     ")
             .build();
 
+        game.turn.change();
         assertTrue(game.isBlocked());
     }
 

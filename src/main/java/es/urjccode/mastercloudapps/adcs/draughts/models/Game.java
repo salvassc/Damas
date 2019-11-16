@@ -1,5 +1,8 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Game {
 
 	private Board board;
@@ -79,7 +82,19 @@ public class Game {
 	}
 
 	public boolean isBlocked() {
-		return this.board.getPieces(this.turn.getColor()).isEmpty();
+		return this.board.getPieces(this.turn.getColor()).isEmpty() || !this.isPosibleMove();
+	}
+
+	private boolean isPosibleMove(){
+		HashMap<Piece,Coordinate> pieces = this.board.getPieces(this.turn.getColor());
+		for(Map.Entry<Piece,Coordinate> piece : pieces.entrySet()){
+			
+			Error error = isCorrect(piece.getValue(), new Coordinate(piece.getValue().getRow()+1, piece.getValue().getColumn()+1));
+			if(error != null){
+				return false;
+			}
+		}
+		return true;		
 	}
 
 	public int getDimension() {
