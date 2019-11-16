@@ -213,4 +213,20 @@ public class GameWithKingTestBuilder {
         assertTrue(game.isBlocked());
     }
 
+    @Test
+    public void testGivenGameWhenPieceWhiteNotCanMoveThenGameBlocked(){
+        Game game = new GameBuilder()
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row(" b      ")
+            .row("n n     ")
+            .build();
+
+        assertTrue(game.isBlocked());
+    }
+
 }
