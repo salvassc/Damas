@@ -35,7 +35,7 @@ public class Game {
 				color = Color.WHITE;
 			}
 			if (color != null) {
-				return new Piece(color);
+				return new Men(color);
 			}
 		}
 		return null;

@@ -29,7 +29,7 @@ public class GameWithKingTestBuilder {
 
         assertNull(game.getPiece(origin));
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
-        
+        assertEquals(King.class, game.getPiece(target).getClass());
     }
 
    
@@ -59,6 +59,7 @@ public class GameWithKingTestBuilder {
         assertNull(game.getPiece(origin));
         assertNull(game.getPiece(eat));
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
+        assertEquals(King.class, game.getPiece(target).getClass());
     }
 
      @Test
@@ -85,6 +86,7 @@ public class GameWithKingTestBuilder {
 
         assertNull(game.getPiece(origin));
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
+        assertEquals(King.class, game.getPiece(target).getClass());
     }
 
     @Test
@@ -114,6 +116,7 @@ public class GameWithKingTestBuilder {
         assertNull(game.getPiece(origin));
         assertNull(game.getPiece(eat));
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
+        assertEquals(King.class, game.getPiece(target).getClass());
     }
 
     @Test
@@ -138,7 +141,7 @@ public class GameWithKingTestBuilder {
 
         assertNull(game.getPiece(origin));
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
-        assertEquals(Men.class, game.getTypePiece(target));
+        assertEquals(Men.class, game.getPiece(target).getClass());
     }
 
     @Test
@@ -154,8 +157,8 @@ public class GameWithKingTestBuilder {
         .row("        ")
         .row("        ")
         .row("n       ")
-        .row(" b      ")
-        .row("        ")
+        .row(" b     N")
+        .row("N       ")
         .build();
 
         assertEquals(Color.BLACK, game.getPiece(origin).getColor());
@@ -168,7 +171,7 @@ public class GameWithKingTestBuilder {
         assertNull(game.getPiece(origin));
         assertNull(game.getPiece(eat));
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
-        assertEquals(Men.class, game.getTypePiece(target));
+        assertEquals(Men.class, game.getPiece(target).getClass());
     }
 
 }
