@@ -4,6 +4,13 @@ public class Piece {
 
 	private Color color;
 	private static final int MAX_DISTANCE = 2;
+	public static final String[] pieceTypes = {"b","B","n","N"," "};
+	public static Piece[] PIECES = new Piece[]{
+		new Men(Color.WHITE),
+		new King(Color.WHITE),
+		new Men(Color.BLACK),
+		new King(Color.BLACK),
+	};
 
 	Piece(Color color) {
 		assert color != null;
