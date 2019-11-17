@@ -3,6 +3,9 @@ package es.urjccode.mastercloudapps.adcs.draughts.views;
 import es.urjccode.mastercloudapps.adcs.draughts.controllers.Controller;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Color;
 import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
+import es.urjccode.mastercloudapps.adcs.draughts.models.Men;
+import es.urjccode.mastercloudapps.adcs.draughts.models.Piece;
+import es.urjccode.mastercloudapps.adcs.draughts.models.King;
 
 class GameView extends SubView {
 
@@ -13,11 +16,21 @@ class GameView extends SubView {
         for(int i=0; i<DIMENSION; i++){
             this.console.write((i+1)+"");
             for(int j=0; j<DIMENSION; j++){
-                Color color = controller.getColor(new Coordinate(i,j));
-                if (color == null){
+                Piece piece = controller.getPiece(new Coordinate(i,j));
+                if(piece == null){
+                    this.console.write(MessageView.PIECE_COLORS[4]);
+                }
+                else if(piece.getColor() == Color.WHITE && (piece instanceof Men)){
+                    this.console.write(MessageView.PIECE_COLORS[0]);
+                }
+                else if(piece.getColor() == Color.WHITE && (piece instanceof King)){
+                    this.console.write(MessageView.PIECE_COLORS[1]);
+                }
+                else if(piece.getColor() == Color.BLACK && (piece instanceof Men)){
                     this.console.write(MessageView.PIECE_COLORS[2]);
-                } else {
-                    this.console.write(MessageView.PIECE_COLORS[color.ordinal()]);
+                }
+                else {
+                    this.console.write(MessageView.PIECE_COLORS[3]);
                 }
             }
             this.console.writeln((i+1)+"");

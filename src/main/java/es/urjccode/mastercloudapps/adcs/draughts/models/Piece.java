@@ -47,7 +47,7 @@ public class Piece {
 		return difference < 0;
 	}
 
-	Color getColor() {
+	public Color getColor() {
 		return this.color;
 	}
 

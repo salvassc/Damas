@@ -17,7 +17,7 @@ public enum MessageView {
 
     private String message;
     static final String[] NAME_COLORS = {"blancas", "negras"};
-    static final String[] PIECE_COLORS = {"b", "n", " "};
+    static final String[] PIECE_COLORS = {"b", "B", "n", "N", " "};
     private static Console console = new Console();
 
     private MessageView(String message){
