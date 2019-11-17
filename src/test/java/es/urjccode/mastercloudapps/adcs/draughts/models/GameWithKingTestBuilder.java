@@ -251,6 +251,7 @@ public class GameWithKingTestBuilder {
         game.move(origin, target);
         assertNull(game.getPiece(origin));
         assertEquals(King.class, game.getPiece(target).getColor().getClass());
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
     }
 
     @Test
@@ -276,6 +277,7 @@ public class GameWithKingTestBuilder {
         assertNull(game.getPiece(origin));
         assertNull(game.getPiece(eat));
         assertEquals(King.class, game.getPiece(target).getColor().getClass());
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
     }
 
 
