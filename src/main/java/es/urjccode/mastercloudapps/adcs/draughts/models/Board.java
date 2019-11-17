@@ -19,7 +19,7 @@ class Board implements PieceProvider {
         }
     }
 
-    private Square getSquare(Coordinate coordinate){
+    Square getSquare(Coordinate coordinate){
         assert coordinate!=null;
         return this.squares[coordinate.getRow()][coordinate.getColumn()];
     }

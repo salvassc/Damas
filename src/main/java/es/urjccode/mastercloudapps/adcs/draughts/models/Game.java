@@ -1,5 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
+import java.util.List;
+
 public class Game {
 
 	private Board board;
@@ -82,32 +84,41 @@ public class Game {
 		return this.board.getPieces(this.turn.getColor()).isEmpty() || !isPosibleMove();
 	}
 
-	private boolean isPosibleMove() {
-		for(int i = 0; i < this.getDimension(); i++){
-            for(int j = 0; j < this.getDimension(); j++){
-                Coordinate origin = new Coordinate(i, j);
-                int row = origin.getRow();
-				int column = origin.getColumn();
-				Piece piece = this.getPiece(origin);
-				if(piece != null && this.getPiece(origin).getClass() == Men.class){
-					try{
-						if(this.getTurnColor() == Color.WHITE){
-							if(this.isCorrect(origin, new Coordinate(row-1, column-1)) == null || this.isCorrect(origin, new Coordinate(row-1, column+1)) == null){
-								return true;
-							}  
+	private boolean isPosibleMove(){
+		boolean posibleMove = false;
+		List<Piece> pieces = board.getPieces(this.getTurnColor());
+		for(int p = 0; p < pieces.size(); p++){
+			if(!posibleMove){
+				for(int i = 0; i < board.getDimension(); i++){
+					for(int j = 0; j < board.getDimension(); j++){
+						Coordinate coordinate = new Coordinate(i,j);
+						if(board.getSquare(coordinate).getColor() == this.getTurnColor()){
+							if(board.getSquare(coordinate).getPiece() == pieces.get(p)){
+								posibleMove = canMove(coordinate);
+							}
 						}
-						else{
-							if(this.isCorrect(origin, new Coordinate(row+1, column-1)) == null || this.isCorrect(origin, new Coordinate(row+1, column+1)) == null){
-								return true;
-							}  
-						}
-					} catch(IndexOutOfBoundsException e){
-						
 					}
 				}
-            }
-        }
-        return false;
+			} else {
+				return posibleMove;
+			}
+		}
+		return posibleMove;
+	}
+
+	boolean canMove(Coordinate origin){
+		boolean move = false;
+		for(int i = 0; i < board.getDimension(); i++){
+			for(int j = 0; j < board.getDimension(); j++){
+				Coordinate target = new Coordinate(i,j);
+				move = board.getPiece(origin).isCorrect(origin, target, this.board) == null;
+				if (move){
+					return move;
+				}
+
+			}
+		}
+		return move;
 	}
 
 	public int getDimension() {
