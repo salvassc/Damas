@@ -5,16 +5,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class PieceTest {
+public class MenPieceTest {
 
     @Test
-    public void testGivenPieceWhenIsAdvancedThenTrue(){
+    public void testGivenMenPieceWhenIsAdvancedThenTrue(){
         assertTrue(new Men(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(4,1)));
         assertTrue(new Men(Color.BLACK).isAdvanced(new Coordinate(2,1), new Coordinate(3,2)));
     }
 
     @Test
-    public void testGivenPieceWhenNotIsAdvancedThenFalse(){
+    public void testGivenMenPieceWhenNotIsAdvancedThenFalse(){
         assertFalse(new Men(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(6,1)));
         assertFalse(new Men(Color.WHITE).isAdvanced(new Coordinate(5,0), new Coordinate(5,2)));
         assertFalse(new Men(Color.BLACK).isAdvanced(new Coordinate(2,1), new Coordinate(2,3)));
