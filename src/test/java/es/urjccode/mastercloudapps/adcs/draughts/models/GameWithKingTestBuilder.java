@@ -2,6 +2,7 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -229,5 +230,53 @@ public class GameWithKingTestBuilder {
         game.turn.change();
         assertTrue(game.isBlocked());
     }
+
+    @Test
+    public void testGivenGameWhenKingMoveThenMoveOk(){
+        Coordinate origin = new Coordinate(0,7);
+        Coordinate target = new Coordinate(1,6);
+
+        Game game = new GameBuilder()
+            .row("       B")
+            .row("b       ")
+            .row(" n      ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+
+        assertEquals(King.class, game.getPiece(origin).getClass());
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(King.class, game.getPiece(target).getColor().getClass());
+    }
+
+    @Test
+    public void testGivenGameWhenKingMoveAndEatThenMoveOk(){
+        Coordinate origin = new Coordinate(0,7);
+        Coordinate eat = new Coordinate(1,6);
+        Coordinate target = new Coordinate(2,5);
+
+        Game game = new GameBuilder()
+            .row("       B")
+            .row("b     n ")
+            .row(" n      ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+
+        assertEquals(King.class, game.getPiece(origin).getClass());
+        assertNotNull(game.getPiece(eat));
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertNull(game.getPiece(eat));
+        assertEquals(King.class, game.getPiece(target).getColor().getClass());
+    }
+
 
 }
