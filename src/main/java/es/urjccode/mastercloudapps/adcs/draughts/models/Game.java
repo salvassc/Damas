@@ -102,7 +102,7 @@ public class Game {
 							}  
 						}
 					} catch(IndexOutOfBoundsException e){
-						System.err.println("Test: Fuera de tablero");
+						
 					}
 				}
             }

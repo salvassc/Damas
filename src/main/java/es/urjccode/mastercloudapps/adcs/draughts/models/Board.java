@@ -7,6 +7,8 @@ class Board implements PieceProvider {
 
     private static final int DIMENSION = 8;
     private Square[][] squares;
+    static final int LIMIT_INITIAL = 0;
+	static final int LIMIT_FINAL = 7;
 
     Board() {
         this.squares = new Square[this.getDimension()][this.getDimension()];
