@@ -1,6 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 class Board implements PieceProvider {
 
@@ -49,13 +50,13 @@ class Board implements PieceProvider {
         return this.getSquare(coordinate).getColor();
     }
 
-    HashMap<Piece,Coordinate> getPieces(Color color) {
-        HashMap<Piece,Coordinate> pieces = new HashMap<Piece,Coordinate>();
+    List <Piece> getPieces(Color color) {
+        List<Piece> pieces = new ArrayList<Piece>();
         for (int i = 0; i < this.getDimension(); i++) {
             for (int j = 0; j < this.getDimension(); j++) {
                 Coordinate coordinate = new Coordinate(i, j);
                 if(color == this.getColor(coordinate)){
-                    pieces.put(this.getPiece(coordinate), coordinate);
+                    pieces.add(this.getPiece(coordinate));
                 }
             }
         }
@@ -79,7 +80,7 @@ class Board implements PieceProvider {
             }
         }
         return numberKings;
-	}
+    }
 
     @Override
     public String toString() {

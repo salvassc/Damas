@@ -198,7 +198,7 @@ public class GameWithKingTestBuilder {
         Coordinate target = new Coordinate(1,0);
 
         Game game = new GameBuilder()
-            .row("     B  ")
+            .row("       B")
             .row("        ")
             .row(" n     B")
             .row("  b     ")

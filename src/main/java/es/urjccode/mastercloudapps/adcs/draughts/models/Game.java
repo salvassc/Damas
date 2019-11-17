@@ -1,8 +1,5 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Game {
 
 	private Board board;
@@ -82,19 +79,35 @@ public class Game {
 	}
 
 	public boolean isBlocked() {
-		return this.board.getPieces(this.turn.getColor()).isEmpty() || !this.isPosibleMove();
+		return this.board.getPieces(this.turn.getColor()).isEmpty() || !isPosibleMove();
 	}
 
-	private boolean isPosibleMove(){
-		HashMap<Piece,Coordinate> pieces = this.board.getPieces(this.turn.getColor());
-		for(Map.Entry<Piece,Coordinate> piece : pieces.entrySet()){
-			
-			Error error = isCorrect(piece.getValue(), new Coordinate(piece.getValue().getRow()+1, piece.getValue().getColumn()+1));
-			if(error != null){
-				return false;
-			}
-		}
-		return true;		
+	private boolean isPosibleMove() {
+		for(int i = 0; i < this.getDimension(); i++){
+            for(int j = 0; j < this.getDimension(); j++){
+                Coordinate origin = new Coordinate(i, j);
+                int row = origin.getRow();
+				int column = origin.getColumn();
+				Piece piece = this.getPiece(origin);
+				if(piece != null && this.getPiece(origin).getClass() == Men.class){
+					try{
+						if(this.getTurnColor() == Color.WHITE){
+							if(this.isCorrect(origin, new Coordinate(row-1, column-1)) == null || this.isCorrect(origin, new Coordinate(row-1, column+1)) == null){
+								return true;
+							}  
+						}
+						else{
+							if(this.isCorrect(origin, new Coordinate(row+1, column-1)) == null || this.isCorrect(origin, new Coordinate(row+1, column+1)) == null){
+								return true;
+							}  
+						}
+					} catch(IndexOutOfBoundsException e){
+						System.err.println("Test: Fuera de tablero");
+					}
+				}
+            }
+        }
+        return false;
 	}
 
 	public int getDimension() {

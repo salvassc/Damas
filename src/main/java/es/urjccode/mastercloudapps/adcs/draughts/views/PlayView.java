@@ -42,6 +42,9 @@ class PlayView extends SubView {
                 this.console.writeln(MessageView.MESSAGE_END_GAME.getMessage());
             }
         }
+        else{
+            this.console.writeln(MessageView.ERROR.getMessage() + error.name());
+        }
     }
 
 }
