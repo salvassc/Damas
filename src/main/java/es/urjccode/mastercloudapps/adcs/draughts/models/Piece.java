@@ -2,8 +2,10 @@ package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 public class Piece {
 
-	private Color color;
-	private static final int MAX_DISTANCE = 2;
+	protected Color color;
+	private Men men;
+	private King king;
+	protected static final int MAX_DISTANCE = 2;
 	public static final String[] pieceTypes = {"b","B","n","N"," "};
 	public static Piece[] PIECES = new Piece[]{
 		new Men(Color.WHITE),
@@ -18,25 +20,10 @@ public class Piece {
 	}
 
 	Error isCorrect(Coordinate origin, Coordinate target, PieceProvider pieceProvider) {
-		if (!origin.isDiagonal(target)) {
-			return Error.NOT_DIAGONAL;
+		if(this instanceof King){
+			return king.isCorrect(origin, target, pieceProvider);
 		}
-		if (!pieceProvider.isEmpty(target)) {
-			return Error.NOT_EMPTY_TARGET;
-		}
-		if (!this.isAdvanced(origin, target)) {
-			return Error.NOT_ADVANCED;
-		}
-		int distance = origin.diagonalDistance(target);
-		if (distance > Piece.MAX_DISTANCE) {
-			return Error.BAD_DISTANCE;
-		}
-		if (distance == Piece.MAX_DISTANCE) {
-			if (pieceProvider.getPiece(origin.betweenDiagonal(target)) == null) {
-				return Error.EATING_EMPTY;
-			}
-		}
-		return null;
+		return men.isCorrect(origin, target, pieceProvider);
 	}
 
 	boolean isLimit(Coordinate coordinate){
@@ -45,13 +32,10 @@ public class Piece {
 	}
 
 	boolean isAdvanced(Coordinate origin, Coordinate target) {
-		assert origin != null;
-		assert target != null;
-		int difference = origin.getRow() - target.getRow();
-		if (color == Color.WHITE) {
-			return difference > 0;
+		if(this instanceof King){
+			return king.isAdvanced(origin, target);
 		}
-		return difference < 0;
+		return men.isAdvanced(origin, target);
 	}
 
 	public Color getColor() {
