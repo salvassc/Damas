@@ -35,9 +35,9 @@ public class Game {
 		if (coordinate.isBlack()) {
 			final int row = coordinate.getRow();
 			Color color = null;
-			if (row <= 2) {
+			if (row <= Coordinate.LIMIT_PIECES_BLACK) {
 				color = Color.BLACK;
-			} else if (row >= 5) {
+			} else if (row >= Coordinate.LIMIT_PIECES_WHITE) {
 				color = Color.WHITE;
 			}
 			if (color != null) {
@@ -50,7 +50,7 @@ public class Game {
 	public void move(Coordinate origin, Coordinate target) {
 		assert this.isCorrect(origin, target) == null;
 		Color colorPiece = this.getColor(origin);
-		if (origin.diagonalDistance(target) == 2) {
+		if (origin.diagonalDistance(target) == Piece.MAX_DISTANCE) {
 			this.board.remove(origin.betweenDiagonal(target));
 		}
 		this.board.move(origin, target);

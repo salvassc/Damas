@@ -5,7 +5,7 @@ public class Piece {
 	protected Color color;
 	private Men men;
 	private King king;
-	protected static final int MAX_DISTANCE = 2;
+	static final int MAX_DISTANCE = 2;
 	public static Piece[] PIECES = new Piece[]{
 		new Men(Color.WHITE),
 		new King(Color.WHITE),

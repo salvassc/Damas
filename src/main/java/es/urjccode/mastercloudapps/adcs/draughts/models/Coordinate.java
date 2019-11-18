@@ -6,6 +6,8 @@ public class Coordinate {
     private int column;
     private static final int LOWER_LIMIT = 0;
     private static final int UPPER_LIMIT = 7;
+    static final int LIMIT_PIECES_BLACK = 2;
+    static final int LIMIT_PIECES_WHITE = 5;
 
     public Coordinate(int row, int column) {
         this.row = row;
