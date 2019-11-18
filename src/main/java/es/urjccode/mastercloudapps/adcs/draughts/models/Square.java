@@ -4,9 +4,6 @@ class Square {
 
     private Piece piece;
 
-    Square() {
-    }
-
     void put(Piece piece) {
         assert piece != null;
         this.piece = piece;

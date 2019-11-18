@@ -8,6 +8,10 @@ public class Game {
 	Turn turn;
 
 	public Game() {
+		initGame();
+	}
+
+	private void initGame(){
 		this.turn = new Turn();
 		this.board = new Board();
 		for (int i = 0; i < this.board.getDimension(); i++) {
@@ -81,44 +85,45 @@ public class Game {
 	}
 
 	public boolean isBlocked() {
-		return this.board.getPieces(this.turn.getColor()).isEmpty() || !isPosibleMove();
+		return this.board.getPieces(this.turn.getColor()).isEmpty() || !isPosibleMovePieces();
 	}
 
-	private boolean isPosibleMove(){
-		boolean posibleMove = false;
+	private boolean isPosibleMovePieces(){
 		List<Piece> pieces = board.getPieces(this.getTurnColor());
 		for(int p = 0; p < pieces.size(); p++){
-			if(!posibleMove){
 				for(int i = 0; i < board.getDimension(); i++){
 					for(int j = 0; j < board.getDimension(); j++){
 						Coordinate coordinate = new Coordinate(i,j);
-						if(board.getSquare(coordinate).getColor() == this.getTurnColor()){
-							if(board.getSquare(coordinate).getPiece() == pieces.get(p)){
-								posibleMove = canMove(coordinate);
-							}
+						if(this.isPosibleMovePiece(pieces,p,coordinate)){
+							return true;
 						}
 					}
 				}
-			} else {
-				return posibleMove;
-			}
 		}
-		return posibleMove;
+		return false;
 	}
 
-	boolean canMove(Coordinate origin){
-		boolean move = false;
+	private boolean isPosibleMovePiece(List<Piece> pieces, int p, Coordinate coordinate){
+		if(board.getSquare(coordinate).getColor() == this.getTurnColor()){
+			if(board.getSquare(coordinate).getPiece() == pieces.get(p)){
+				if(canMove(coordinate)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean canMove(Coordinate origin){
 		for(int i = 0; i < board.getDimension(); i++){
 			for(int j = 0; j < board.getDimension(); j++){
 				Coordinate target = new Coordinate(i,j);
-				move = board.getPiece(origin).isCorrect(origin, target, this.board) == null;
-				if (move){
-					return move;
+				if(board.getPiece(origin).isCorrect(origin, target, this.board) == null){
+					return true;
 				}
-
 			}
 		}
-		return move;
+		return false;
 	}
 
 	public int getDimension() {

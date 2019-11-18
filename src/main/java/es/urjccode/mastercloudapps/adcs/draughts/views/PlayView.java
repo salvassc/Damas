@@ -17,11 +17,10 @@ class PlayView extends SubView {
         Coordinate origin = null;
         Coordinate target = null;
         Error error;
-        GameView gameView = new GameView();
         do {
             error = null;
             String color = MessageView.NAME_COLORS[playController.getColor().ordinal()];
-            String format = this.console.readString("Mueven las " + color + ": ");
+            String format = this.console.readString(MessageView.MESSAGE_MOVE.getMessage() + color + ": ");
             if (format.length() != PlayView.FORMAT.length()) {
                 error = Error.BAD_FORMAT;
                 this.console.writeln(MessageView.ERROR.getMessage() + error.name());
@@ -36,15 +35,20 @@ class PlayView extends SubView {
         } while (error != null);
         error = playController.isCorrect(origin, target);
         if (error == null){
-            playController.move(origin, target);
-            gameView.write(playController);
-            if (playController.isBlocked()){
-                this.console.writeln(MessageView.MESSAGE_END_GAME.getMessage());
-            }
-        }
-        else{
+            printBoard(playController, origin, target);
+        } else{
             this.console.writeln(MessageView.ERROR.getMessage() + error.name());
         }
+    }
+
+    private void printBoard(PlayController playController, Coordinate origin, Coordinate target){
+        GameView gameView = new GameView();
+        playController.move(origin, target);
+        gameView.write(playController);
+        if (playController.isBlocked()){
+            this.console.writeln(MessageView.MESSAGE_END_GAME.getMessage());
+        }
+       
     }
 
 }

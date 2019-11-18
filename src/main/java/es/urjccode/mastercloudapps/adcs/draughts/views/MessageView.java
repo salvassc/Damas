@@ -7,13 +7,8 @@ public enum MessageView {
     TITLE("Draughts"),
     MESSAGE_RESUME("¿Queréis jugar otra?"),
     MESSAGE_END_GAME("Derrota!!! No puedes mover tus fichas!!!"),
-    MESSAGE_MOVE("Mueven las #name_color:"),
-    ERROR("Error!!!"),
-    CONSOLE_ERROR_STRING("de cadena de caracteres"),
-    CONSOLE_ERROR_INT("entero"),
-    CONSOLE_ERROR_CHARACTER("caracter"),
-    CONSOLE_ERROR_FORMAT("ERROR DE FORMATO! Introduzca un valor con formato "),
-    FORMAT("xx.xx");
+    MESSAGE_MOVE("Mueven las "),
+    ERROR("Error!!!");
 
     private String message;
     static final String[] NAME_COLORS = {"blancas", "negras"};
@@ -32,7 +27,7 @@ public enum MessageView {
         MessageView.console.writeln(this.message);
     }
 
-    public String getMessage(){
+    String getMessage(){
         return this.message;
     }
 

@@ -4,7 +4,7 @@ public class King extends Piece {
 
     static final int MAX_KINGS = 2;
 
-    King(Color color) {
+    public King(Color color) {
         super(color);
     }
 
