@@ -280,5 +280,80 @@ public class GameWithKingTestBuilder {
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
     }
 
+    @Test
+    public void testGivenGameWhenKingMoveDiagonalOtherSideThenMoveOk(){
+        Coordinate origin = new Coordinate(0,7);
+        Coordinate target = new Coordinate(7,0);
+
+        Game game = new GameBuilder()
+            .row("       B")
+            .row("b       ")
+            .row(" n      ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+
+        assertEquals(King.class, game.getPiece(origin).getClass());
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(King.class, game.getPiece(target).getClass());
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
+    }
+
+    @Test
+    public void testGivenGameWhenKingMoveDiagonalOtherSideAndEatThenMoveOk(){
+        Coordinate origin = new Coordinate(0,7);
+        Coordinate eat = new Coordinate(2,5);
+        Coordinate target = new Coordinate(7,0);
+
+        Game game = new GameBuilder()
+            .row("       B")
+            .row("b       ")
+            .row(" n   n  ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+
+        assertEquals(King.class, game.getPiece(origin).getClass());
+        assertEquals(Men.class, game.getPiece(eat).getClass());
+        assertEquals(Color.BLACK, game.getPiece(eat).getColor());
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(King.class, game.getPiece(target).getClass());
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
+    }
+
+    @Test
+    public void testGivenGameWhenKingMoveAndEatOtherKingThenMoveOk(){
+        Coordinate origin = new Coordinate(0,7);
+        Coordinate eat = new Coordinate(1,6);
+        Coordinate target = new Coordinate(2,5);
+
+        Game game = new GameBuilder()
+            .row("       B")
+            .row("b     N ")
+            .row(" n      ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .row("        ")
+            .build();
+
+        assertEquals(King.class, game.getPiece(origin).getClass());
+        assertEquals(King.class, game.getPiece(eat).getClass());
+        assertEquals(Color.BLACK, game.getPiece(eat).getColor());
+        game.move(origin, target);
+        assertNull(game.getPiece(origin));
+        assertEquals(King.class, game.getPiece(target).getClass());
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
+    }
+
 
 }
